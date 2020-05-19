@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createTodo } from './actions';
+import { addTodoRequest } from './thunks';
 import './NewTodoForm.css';
 
 
-const NewTodoForm = ({ todos, handleCreateTodo }) => {
+const NewTodoForm = ({ todos, handleAddTodo }) => {
   const [inputValue, setInputValue] = useState('');
 
   return (
@@ -21,7 +21,7 @@ const NewTodoForm = ({ todos, handleCreateTodo }) => {
         onClick={() => {
           const isDuplicateTodo = todos.some(todo => todo.text === inputValue);
           if (!isDuplicateTodo) {
-            handleCreateTodo(inputValue);
+            handleAddTodo(inputValue);
             setInputValue('');
           }
         }}
@@ -32,8 +32,8 @@ const NewTodoForm = ({ todos, handleCreateTodo }) => {
   )
 };
 
-// entire app state gets passed in
-// returns properties of state that our component needs access to
+// entire app state is passed in
+// properties of state that our component needs access to become accessible in props object
 const mapStateToProps = state => ({
   todos: state.todos // todos is now accessible in props
 });
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
 // map action creators to props; connected component no longer receives props.dispatch() when this argument is passed into connect()
 // can pass these action creators down to child components
 const mapDispatchToProps = dispatch => ({
-  handleCreateTodo: text => dispatch(createTodo(text))
+  handleAddTodo: text => dispatch(addTodoRequest(text))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTodoForm);

@@ -1,12 +1,11 @@
 {
-  "name": "redux-build",
+  "name": "redux-todo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "makes api calls to todo server",
+  "main": "src/index.js",
   "scripts": {
     "startDev": "npx webpack-dev-server --mode development",
-    "build": "npx webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx webpack"
   },
   "keywords": [],
   "author": "",
